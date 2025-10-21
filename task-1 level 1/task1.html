@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisionX - The Future of Edge AI</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>VisionX</h1>
+    <nav>
+      <a href="#demo">AI Vision Demo</a>
+      <a href="#skills">Skills Dashboard</a>
+      <a href="#comparison">Edge vs Cloud</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>The Future of Edge AI</h2>
+    <p>Experience the cutting-edge of AI computation directly on devices with VisionX. Faster, smarter, and secure.</p>
+    <svg viewBox="0 0 800 400" class="floating-svg">
+      <circle cx="100" cy="200" r="4" fill="#00f0ff">
+        <animate attributeName="cy" values="200;180;220;200" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="300" cy="100" r="4" fill="#ff00ff">
+        <animate attributeName="cy" values="100;80;120;100" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <line x1="100" y1="200" x2="300" y2="100" stroke="#0ff" stroke-width="1" opacity="0.5">
+        <animate attributeName="x2" values="300;310;290;300" dur="6s" repeatCount="indefinite"/>
+      </line>
+    </svg>
+  </section>
+
+  <!-- AI Vision Demo Section -->
+  <section id="demo">
+    <h2>AI Vision Demo</h2>
+    <div class="cards-section">
+      <div class="card">
+        <h3>Real-Time Object Detection</h3>
+        <p>Detect objects instantly on device without relying on cloud servers.</p>
+      </div>
+      <div class="card">
+        <h3>Gesture Recognition</h3>
+        <p>Interact with AI using intuitive hand gestures captured locally.</p>
+      </div>
+      <div class="card">
+        <h3>Face Analytics</h3>
+        <p>Analyze facial expressions securely and efficiently on the edge.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Dashboard Section -->
+  <section id="skills">
+    <h2>Skills Dashboard</h2>
+    <div class="cards-section">
+      <div class="card">
+        <h3>Neural Networks</h3>
+        <p>Optimized AI models running directly on edge devices.</p>
+      </div>
+      <div class="card">
+        <h3>Computer Vision</h3>
+        <p>Advanced image and video analytics without latency.</p>
+      </div>
+      <div class="card">
+        <h3>AI Security</h3>
+        <p>Privacy-first AI computations with end-to-end encryption.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edge vs Cloud AI Section -->
+ <section id="comparison">
+  <h2>Edge vs Cloud AI</h2>
+  <div class="comparison-cards">
+    <div class="card edge-card">
+      <h3>Edge AI</h3>
+      <ul>
+        <li>Low Latency : instantly processing on device</li>
+        <li>Offline Capability : works without internet</li>
+        <li>Enhanced Privacy : data stays local</li>
+        <li>Energy Efficient : optimized for devices</li>
+        <li>Real-Time Decisions :immediate AI actions</li>
+
+      </ul>
+    </div>
+    <div class="card cloud-card">
+      <h3>Cloud AI</h3>
+      <ul>
+        <li>Scalable Compute : handles massive workloads</li>
+        <li>Heavy Analytics : complex model processing</li>
+        <li>Global Access : anywhere with internet</li>
+        <li>Centralized Updates : easy model upgrades</li>
+        <li>Storage & Backup : vast data retention</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-content">
+      <h3>VisionX</h3>
+      <p>Pushing the boundaries of Edge AI, today and tomorrow.</p>
+      <div class="footer-links">
+        <a href="#demo">AI Vision Demo</a>
+        <a href="#skills">Skills Dashboard</a>
+        <a href="#comparison">Edge vs Cloud</a>
+      </div>
+      <p class="copyright">&copy; 2025 VisionX. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+
+  <!-- JS -->
+  <script>
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+      let scrollY = window.scrollY;
+      hero.style.transform = `translateY(${scrollY * 0.2}px)`;
+    });
+
+  </script>
+
+</body>
+</html>
