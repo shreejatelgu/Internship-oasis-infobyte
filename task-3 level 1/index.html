@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-container">
+        <div class="mobile-bar">
+            <div class="time-date">
+                <div id="clock">9:15 AM</div>
+                <div id="date">Oct 21</div>
+            </div>
+            <div class="status-icons">
+                <span class="network">📶</span>
+                <span id="battery">🔋</span>
+            </div>
+        </div>
+
+        <h1>Temperature Converter</h1>
+
+        <form id="converterForm" onsubmit="return false;">
+            <input type="number" id="inputTemp" placeholder="Enter temperature" required>
+
+            <div class="unit-options">
+                <label><input type="radio" name="unit" value="celsius" checked> °C</label>
+                <label><input type="radio" name="unit" value="fahrenheit"> °F</label>
+                <label><input type="radio" name="unit" value="kelvin"> K</label>
+            </div>
+
+            <button onclick="convertTemperature()">Convert</button>
+        </form>
+
+        <div id="result"></div>
+    </main>
+
+    <script>
+        // Temperature conversion
+        function convertTemperature() {
+            const temp = parseFloat(document.getElementById('inputTemp').value);
+            const units = document.getElementsByName('unit');
+            let unit;
+            for (let i = 0; i < units.length; i++) {
+                if (units[i].checked) {
+                    unit = units[i].value;
+                    break;
+                }
+            }
+
+            let result = '';
+            if (isNaN(temp)) {
+                result = "Please enter a valid number";
+            } else if (unit === 'celsius') {
+                const f = (temp * 9/5) + 32;
+                const k = temp + 273.15;
+                result = `<span>${temp}°C</span> | <span>${f.toFixed(2)}°F</span> | <span>${k.toFixed(2)} K</span>`;
+            } else if (unit === 'fahrenheit') {
+                const c = (temp - 32) * 5/9;
+                const k = c + 273.15;
+                result = `<span>${temp}°F</span> | <span>${c.toFixed(2)}°C</span> | <span>${k.toFixed(2)} K</span>`;
+            } else if (unit === 'kelvin') {
+                const c = temp - 273.15;
+                const f = (c * 9/5) + 32;
+                result = `<span>${temp} K</span> | <span>${c.toFixed(2)}°C</span> | <span>${f.toFixed(2)}°F</span>`;
+            }
+
+            document.getElementById('result').innerHTML = result;
+        }
+
+        // gettign clock and date
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2,'0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            document.getElementById('clock').innerText = `${hours}:${minutes} ${ampm}`;
+
+            const options = { month: 'short', day: 'numeric' };
+            document.getElementById('date').innerText = now.toLocaleDateString(undefined, options);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Getting battery status api
+        const batteryEl = document.getElementById('battery');
+        if (navigator.getBattery) {
+            navigator.getBattery().then(function(battery) {
+                function updateBattery() {
+                    const level = Math.round(battery.level * 100);
+                    const charging = battery.charging ? '⚡' : '';
+                    batteryEl.innerText = `${charging}${level}%`;
+                }
+                updateBattery();
+                battery.addEventListener('levelchange', updateBattery);
+                battery.addEventListener('chargingchange', updateBattery);
+            });
+        } else {
+            batteryEl.innerText = "🔋 N/A";
+        }
+    </script>
+</body>
+</html>
